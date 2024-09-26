@@ -1,0 +1,253 @@
+<html><head><base href="https://ralphbusinesscameroun.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ralph Business Cameroun - Investissement et Croissance</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  header {
+    background-color: #009639;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  nav {
+    background-color: #FF9900;
+    padding: 0.5rem 0;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul li {
+    margin: 0 1rem;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    color: #009639;
+  }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1, h2 {
+    color: #FF9900;
+  }
+  .login-form, .signup-form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  button {
+    background-color: #FF9900;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #e68a00;
+  }
+  .user-icon {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: white;
+    color: #009639;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  #logout-button {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Ralph Business Cameroun</h1>
+    <p>Votre plateforme d'investissement fiable au Cameroun</p>
+    <div class="user-icon" id="userIcon"></div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#produits">Produits d'investissement</a></li>
+      <li><a href="#connexion">Se connecter</a></li>
+      <li><a href="#inscription">S'inscrire</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <section id="accueil">
+      <h2>Bienvenue chez Ralph Business Cameroun</h2>
+      <p>Nous sommes votre partenaire de confiance pour l'investissement et la croissance financière au Cameroun.</p>
+    </section>
+
+    <section id="produits">
+      <h2>Nos Produits d'Investissement</h2>
+      <p>Découvrez nos offres d'investissement uniques avec un rendement quotidien de 5.6% sur votre capital investi.</p>
+    </section>
+
+    <section id="connexion">
+      <h2>Se connecter</h2>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="login-email">Email ou Numéro de téléphone:</label>
+          <input type="text" id="login-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Mot de passe:</label>
+          <input type="password" id="login-password" name="password" required>
+        </div>
+        <button type="submit">Se connecter</button>
+      </form>
+    </section>
+
+    <section id="inscription">
+      <h2>S'inscrire</h2>
+      <form id="signup-form" class="signup-form">
+        <div class="form-group">
+          <label for="signup-email">Email:</label>
+          <input type="email" id="signup-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-phone">Numéro de téléphone:</label>
+          <input type="tel" id="signup-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Mot de passe:</label>
+          <input type="password" id="signup-password" name="password" required>
+        </div>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </section>
+
+    <button id="logout-button" onclick="logout()">Se déconnecter</button>
+  </main>
+
+  <script>
+    // Fonction pour simuler la connexion
+    function login(email, password) {
+      // Ici, vous devriez normalement vérifier les informations d'identification avec un serveur
+      // Pour cet exemple, nous allons simplement stocker les informations localement
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('isLoggedIn', 'true');
+      updateUserIcon();
+      showLoggedInState();
+    }
+
+    // Fonction pour simuler l'inscription
+    function signup(email, phone, password) {
+      // Ici, vous devriez normalement envoyer ces informations à un serveur pour créer un compte
+      // Pour cet exemple, nous allons simplement stocker les informations localement
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPhone', phone);
+      localStorage.setItem('isLoggedIn', 'true');
+      updateUserIcon();
+      showLoggedInState();
+    }
+
+    // Fonction pour mettre à jour l'icône de l'utilisateur
+    function updateUserIcon() {
+      const userIcon = document.getElementById('userIcon');
+      const userEmail = localStorage.getItem('userEmail');
+      if (userEmail) {
+        userIcon.textContent = userEmail.charAt(0).toUpperCase();
+        userIcon.style.display = 'flex';
+      } else {
+        userIcon.style.display = 'none';
+      }
+    }
+
+    // Fonction pour afficher l'état connecté
+    function showLoggedInState() {
+      document.getElementById('connexion').style.display = 'none';
+      document.getElementById('inscription').style.display = 'none';
+      document.getElementById('logout-button').style.display = 'block';
+    }
+
+    // Fonction pour afficher l'état déconnecté
+    function showLoggedOutState() {
+      document.getElementById('connexion').style.display = 'block';
+      document.getElementById('inscription').style.display = 'block';
+      document.getElementById('logout-button').style.display = 'none';
+    }
+
+    // Fonction de déconnexion
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPhone');
+      updateUserIcon();
+      showLoggedOutState();
+    }
+
+    // Gérer la soumission du formulaire de connexion
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      login(email, password);
+    });
+
+    // Gérer la soumission du formulaire d'inscription
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const phone = document.getElementById('signup-phone').value;
+      const password = document.getElementById('signup-password').value;
+      signup(email, phone, password);
+    });
+
+    // Vérifier si l'utilisateur est connecté au chargement de la page
+    window.onload = function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') {
+        updateUserIcon();
+        showLoggedInState();
+      } else {
+        showLoggedOutState();
+      }
+    }
+  </script>
+</body></html>
