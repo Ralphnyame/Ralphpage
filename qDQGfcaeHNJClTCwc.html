@@ -1,0 +1,142 @@
+<html><head><base href="https://businesscameroun.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Cameroun - Plateforme d'Investissement</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  header {
+    background-color: #009639;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #FF9900;
+  }
+  .investment-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+  .option {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 45%;
+  }
+  button {
+    background-color: #FF9900;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #e68a00;
+  }
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .payment-method {
+    margin: 0 1rem;
+    text-align: center;
+  }
+  .payment-method img {
+    width: 100px;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Business Cameroun</h1>
+    <p>Votre plateforme d'investissement fiable au Cameroun</p>
+  </header>
+  
+  <main>
+    <h2>Investissez dans l'avenir du Cameroun</h2>
+    <p>Bienvenue sur Business Cameroun, la plateforme qui vous permet d'investir facilement dans des projets prometteurs au Cameroun. Nous acceptons les paiements via Orange Money et Mobile Money pour votre commodité.</p>
+    
+    <div class="investment-options">
+      <div class="option">
+        <h3>Projets Agricoles</h3>
+        <p>Investissez dans l'agriculture durable et contribuez à la sécurité alimentaire du Cameroun.</p>
+        <button onclick="showInvestmentModal('agriculture')">Investir</button>
+      </div>
+      <div class="option">
+        <h3>Tech Startups</h3>
+        <p>Soutenez l'innovation technologique et le développement numérique au Cameroun.</p>
+        <button onclick="showInvestmentModal('tech')">Investir</button>
+      </div>
+    </div>
+    
+    <div class="payment-methods">
+      <div class="payment-method">
+        <img src="orange-money-logo.svg" alt="Logo Orange Money, orange et blanc" width="100" height="100">
+        <p>Orange Money</p>
+      </div>
+      <div class="payment-method">
+        <img src="mobile-money-logo.svg" alt="Logo Mobile Money, vert et bleu" width="100" height="100">
+        <p>Mobile Money</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="investmentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
+    <div style="background-color:white; width:300px; margin:100px auto; padding:20px; border-radius:5px;">
+      <h3 id="modalTitle"></h3>
+      <p>Montant à investir (FCFA):</p>
+      <input type="number" id="investmentAmount" min="1000" step="1000">
+      <p>Méthode de paiement:</p>
+      <select id="paymentMethod">
+        <option value="orange">Orange Money</option>
+        <option value="mobile">Mobile Money</option>
+      </select>
+      <button onclick="processInvestment()">Confirmer l'investissement</button>
+      <button onclick="closeModal()">Annuler</button>
+    </div>
+  </div>
+
+  <script>
+    function showInvestmentModal(type) {
+      document.getElementById('investmentModal').style.display = 'block';
+      document.getElementById('modalTitle').innerText = type === 'agriculture' ? 'Investir dans l'Agriculture' : 'Investir dans la Tech';
+    }
+
+    function closeModal() {
+      document.getElementById('investmentModal').style.display = 'none';
+    }
+
+    function processInvestment() {
+      const amount = document.getElementById('investmentAmount').value;
+      const method = document.getElementById('paymentMethod').value;
+      
+      if (amount < 1000) {
+        alert('Le montant minimum d'investissement est de 1000 FCFA.');
+        return;
+      }
+
+      // Ici, vous intégreriez l'API de paiement réelle d'Orange Money ou Mobile Money
+      alert(`Traitement de l'investissement de ${amount} FCFA via ${method === 'orange' ? 'Orange Money' : 'Mobile Money'}. Merci pour votre investissement!`);
+      closeModal();
+    }
+  </script>
+</body></html>
